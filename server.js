@@ -554,7 +554,35 @@ app.post(
         }
     }
 );
+// ================================
+// SITEMAP
+// ================================
 
+app.get("/sitemap.xml", (req, res) => {
+    res.type("application/xml");
+
+    res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://premium-net-proxy.onrender.com/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+</urlset>`);
+});
+
+// ================================
+// ROBOTS.TXT
+// ================================
+
+app.get("/robots.txt", (req, res) => {
+    res.type("text/plain");
+
+    res.send(`User-agent: *
+Allow: /
+
+Sitemap: https://premium-net-proxy.onrender.com/sitemap.xml`);
+});
 // ================================
 // START SERVER
 // ================================
